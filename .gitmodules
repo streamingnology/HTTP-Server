@@ -1,0 +1,9 @@
+[submodule "third-party/third-party"]
+	path = third-party/third-party
+	url = https://github.com/libevent/libevent.git
+[submodule "third-party/rapidjson"]
+	path = third-party/rapidjson
+	url = https://github.com/Tencent/rapidjson.git
+[submodule "third-party/android-cmake"]
+	path = third-party/android-cmake
+	url = https://github.com/taka-no-me/android-cmake.git
