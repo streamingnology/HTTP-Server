@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Http Server</string>
+    <string name="title_activity_main">Http Server</string>
+    <string name="tab_text_2">Settings</string>
+    <string name="tab_text_3">About</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="tab_text_1">MainPage</string>
+    <string name="banner_ad_unit_id">ca-app-pub-0143974411186089/7643209317</string>
+    <string name="running">running</string>
+    <string name="stopped">stopped</string>
+</resources>
