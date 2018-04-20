@@ -8,6 +8,10 @@ Thanks to [libevent](http://libevent.org/), [RapidJSON](https://github.com/Tence
 
 **NDK** is used to develop this software, and for convenience I choose **C++ 11** standard to program. So you should choose **NDK** support **C++ 11**.
 
+### Download and Install
+
+From [Google Play Store](https://play.google.com/store/apps/details?id=com.streamingnology.httpserver) or download [Android APK](https://github.com/streamingnology/HTTP-Server/releases)
+
 ### Support or Contact
 
 If you encounter an bug, You can fire an issue at GitHub. I will fix it as soon as possible.
