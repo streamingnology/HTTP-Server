@@ -24,67 +24,57 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef EVENT2_HTTP_COMPAT_H_INCLUDED_
-#define EVENT2_HTTP_COMPAT_H_INCLUDED_
-
-/** @file event2/http_compat.h
-
-  Potentially non-threadsafe versions of the functions in http.h: provided
-  only for backwards compatibility.
-
- */
+#ifndef EVENT2_KEYVALQ_STRUCT_H_INCLUDED_
+#define EVENT2_KEYVALQ_STRUCT_H_INCLUDED_
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include <event2/event-config.h>
-#ifdef EVENT__HAVE_SYS_TYPES_H
-#include <sys/types.h>
+/* Fix so that people don't have to run with <sys/queue.h> */
+/* XXXX This code is duplicated with event_struct.h */
+#ifndef TAILQ_ENTRY
+#define EVENT_DEFINED_TQENTRY_
+#define TAILQ_ENTRY(type)						\
+struct {								\
+	struct type *tqe_next;	/* next element */			\
+	struct type **tqe_prev;	/* address of previous next element */	\
+}
+#endif /* !TAILQ_ENTRY */
+
+#ifndef TAILQ_HEAD
+#define EVENT_DEFINED_TQHEAD_
+#define TAILQ_HEAD(name, type)			\
+struct name {					\
+	struct type *tqh_first;			\
+	struct type **tqh_last;			\
+}
 #endif
-#ifdef EVENT__HAVE_SYS_TIME_H
-#include <sys/time.h>
+
+/*
+ * Key-Value pairs.  Can be used for HTTP headers but also for
+ * query argument parsing.
+ */
+struct evkeyval {
+	TAILQ_ENTRY(evkeyval) next;
+
+	char *key;
+	char *value;
+};
+
+TAILQ_HEAD (evkeyvalq, evkeyval);
+
+/* XXXX This code is duplicated with event_struct.h */
+#ifdef EVENT_DEFINED_TQENTRY_
+#undef TAILQ_ENTRY
 #endif
 
-/* For int types. */
-#include <event2/util.h>
-
-/**
- * Start an HTTP server on the specified address and port
- *
- * @deprecated It does not allow an event base to be specified
- *
- * @param address the address to which the HTTP server should be bound
- * @param port the port number on which the HTTP server should listen
- * @return an struct evhttp object
- */
-struct evhttp *evhttp_start(const char *address, ev_uint16_t port);
-
-/**
- * A connection object that can be used to for making HTTP requests.  The
- * connection object tries to establish the connection when it is given an
- * http request object.
- *
- * @deprecated It does not allow an event base to be specified
- */
-struct evhttp_connection *evhttp_connection_new(
-	const char *address, ev_uint16_t port);
-
-/**
- * Associates an event base with the connection - can only be called
- * on a freshly created connection object that has not been used yet.
- *
- * @deprecated XXXX Why?
- */
-void evhttp_connection_set_base(struct evhttp_connection *evcon,
-    struct event_base *base);
-
-
-/** Returns the request URI */
-#define evhttp_request_uri evhttp_request_get_uri
+#ifdef EVENT_DEFINED_TQHEAD_
+#undef TAILQ_HEAD
+#endif
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* EVENT2_EVENT_COMPAT_H_INCLUDED_ */
+#endif

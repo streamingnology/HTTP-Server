@@ -1,5 +1,5 @@
-/* -*- Mode: C; tab-width: 4; c-basic-offset: 4; indent-tabs-mode: nil -*- */
 /*
+ * Copyright (c) 2000-2007 Niels Provos <provos@citi.umich.edu>
  * Copyright (c) 2007-2012 Niels Provos and Nick Mathewson
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,27 +24,26 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef EVENT2_VISIBILITY_H_INCLUDED_
-#define EVENT2_VISIBILITY_H_INCLUDED_
+#ifndef EVENT2_TAG_COMPAT_H_INCLUDED_
+#define EVENT2_TAG_COMPAT_H_INCLUDED_
 
-#include <event2/event-config.h>
+/** @file event2/tag_compat.h
 
-#if defined(event_EXPORTS) || defined(event_extra_EXPORTS) || defined(event_core_EXPORTS)
-# if defined (__SUNPRO_C) && (__SUNPRO_C >= 0x550)
-#  define EVENT2_EXPORT_SYMBOL __global
-# elif defined __GNUC__
-#  define EVENT2_EXPORT_SYMBOL __attribute__ ((visibility("default")))
-# elif defined(_MSC_VER)
-#  define EVENT2_EXPORT_SYMBOL extern __declspec(dllexport)
-# else
-#  define EVENT2_EXPORT_SYMBOL /* unknown compiler */
-# endif
-#else
-# if defined(EVENT__NEED_DLLIMPORT) && defined(_MSC_VER) && !defined(EVENT_BUILDING_REGRESS_TEST)
-#  define EVENT2_EXPORT_SYMBOL extern __declspec(dllimport)
-# else
-#  define EVENT2_EXPORT_SYMBOL
-# endif
-#endif
+    Obsolete/deprecated functions from tag.h; provided only for backwards
+    compatibility.
+ */
 
-#endif /* EVENT2_VISIBILITY_H_INCLUDED_ */
+/**
+   @name Misnamed functions
+
+   @deprecated These macros are deprecated because their names don't follow
+     Libevent's naming conventions.  Use evtag_encode_int and
+     evtag_encode_int64 instead.
+
+   @{
+*/
+#define encode_int(evbuf, number) evtag_encode_int((evbuf), (number))
+#define encode_int64(evbuf, number) evtag_encode_int64((evbuf), (number))
+/**@}*/
+
+#endif /* EVENT2_TAG_H_INCLUDED_ */

@@ -9,10 +9,6 @@ android {
         versionCode 1
         versionName "1.0"
         externalNativeBuild {
-            ndk {
-                abiFilters 'armeabi-v7a'
-                abiFilters 'x86'
-            }
             cmake {
                 cppFlags "-std=c++11"
             }

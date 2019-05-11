@@ -45,7 +45,7 @@
 #define EVENT__DISABLE_THREAD_SUPPORT
 
 /* Define to 1 if you have the `accept4' function. */
-/* #undef EVENT__HAVE_ACCEPT4 */
+#define EVENT__HAVE_ACCEPT4
 
 /* Define to 1 if you have the `arc4random' function. */
 /* #undef EVENT__HAVE_ARC4RANDOM */
@@ -94,7 +94,7 @@
 #define EVENT__HAVE_EPOLL
 
 /* Define to 1 if you have the `epoll_create1' function. */
-/* #undef EVENT__HAVE_EPOLL_CREATE1 */
+#define EVENT__HAVE_EPOLL_CREATE1
 
 /* Define to 1 if you have the `epoll_ctl' function. */
 #define EVENT__HAVE_EPOLL_CTL
@@ -194,7 +194,7 @@
 #define EVENT__HAVE_NETINET_IN_H
 
 /* Define to 1 if you have the <netinet/tcp.h> header file. */
-#define EVENT__HAVE_NETINET_TCP_H
+/* #undef EVENT__HAVE_NETINET_TCP_H */
 
 /* Define if the system has openssl */
 /* #undef EVENT__HAVE_OPENSSL */
@@ -248,10 +248,10 @@
 #define EVENT__HAVE_SIGACTION
 
 /* Define to 1 if you have the `signal' function. */
-/* #undef EVENT__HAVE_SIGNAL */
+#define EVENT__HAVE_SIGNAL
 
 /* Define to 1 if you have the `splice' function. */
-/* #undef EVENT__HAVE_SPLICE */
+#define EVENT__HAVE_SPLICE
 
 /* Define to 1 if you have the <stdarg.h> header file. */
 #define EVENT__HAVE_STDARG_H
@@ -359,7 +359,7 @@
 /* #undef EVENT__HAVE_SYS_SYSCTL_H */
 
 /* Define to 1 if you have the <sys/timerfd.h> header file. */
-/* #undef EVENT__HAVE_SYS_TIMERFD_H */
+#define EVENT__HAVE_SYS_TIMERFD_H */
 
 /* Define to 1 if you have the <sys/time.h> header file. */
 #define EVENT__HAVE_SYS_TIME_H
@@ -438,15 +438,15 @@
 #define EVENT__SIZEOF_INT 4
 
 /* The size of a `long', as computed by sizeof. */
-#define EVENT__SIZEOF_LONG 4
+#define EVENT__SIZEOF_LONG 8
 
 /* The size of a `long long', as computed by sizeof. */
 #define EVENT__SIZEOF_LONG_LONG 8
 
 /* The size of `off_t', as computed by sizeof. */
-#define EVENT__SIZEOF_OFF_T 4
+#define EVENT__SIZEOF_OFF_T 8
 
-#define EVENT__SIZEOF_SSIZE_T 4
+#define EVENT__SIZEOF_SSIZE_T 8
 
 
 /* The size of a `short', as computed by sizeof. */
@@ -465,7 +465,7 @@
 #define EVENT__SIZEOF_SOCKLEN_T 4
 
 /* The size of 'void *', as computer by sizeof */
-#define EVENT__SIZEOF_VOID_P 4
+#define EVENT__SIZEOF_VOID_P 8
 
 /* set an alias for whatever __func__ __FUNCTION__ is, what sillyness */
 #if defined (__func__)
