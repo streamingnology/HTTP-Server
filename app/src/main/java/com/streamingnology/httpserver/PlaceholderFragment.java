@@ -270,8 +270,12 @@ public class PlaceholderFragment extends Fragment {
 
   private void showUserSettings() {
     SharedPreferences userSettings = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-    String root = userSettings.getString(PREFS_ROOT, serverroot);
-    int    port = userSettings.getInt(PREFS_PORT, serverport);
+    String root = serverroot;
+    int    port = serverport;
+    if (userSettings != null) {
+      root = userSettings.getString(PREFS_ROOT, serverroot);
+      port = userSettings.getInt(PREFS_PORT, serverport);
+    }
     serverroot = root;
     serverport = port;
     if (textViewWebRoot != null) {
