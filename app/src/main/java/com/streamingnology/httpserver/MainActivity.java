@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
+    mContext = this;
     MobileAds.initialize(this, "ca-app-pub-0143974411186089~9065287994");
     // Create the adapter that will return a fragment for each of the three
     // primary sections of the activity.
@@ -82,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
     mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-    mContext = this;
     if (!storagePermissionAvailable()) {
       ActivityCompat.requestPermissions(this,
               new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
