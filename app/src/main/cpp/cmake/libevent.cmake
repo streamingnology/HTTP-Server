@@ -13,7 +13,11 @@ FetchContent_Declare(${DEP_NAME}
     SOURCE_DIR ${DEP_SRC_DIR}
 )
 
-option(EVENT__DISABLE_OPENSSL
-        "Define if libevent should build without support for OpenSSL encryption" ON)
+set(EVENT__DISABLE_OPENSSL ON CACHE INTERNAL "")
+set(EVENT__DISABLE_DEBUG_MODE ON CACHE INTERNAL "")
+set(EVENT__DISABLE_BENCHMARK ON CACHE INTERNAL "")
+set(EVENT__DISABLE_TESTS ON CACHE INTERNAL "")
+set(EVENT__DISABLE_REGRESS ON CACHE INTERNAL "")
+set(EVENT__DISABLE_SAMPLES ON CACHE INTERNAL "")
 
 fetchcontent_makeavailable(${DEP_NAME})
