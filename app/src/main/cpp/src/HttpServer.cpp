@@ -96,7 +96,7 @@ int HttpServer::start() {
         asio2::ignore_unused(req, rep);
         set_cors(req, rep);
 
-        rep.fill_html(svg_file);
+        rep.fill_html(svg_file, http::status::ok, "image/svg+xml");
     });
 
     http_server_->bind<http::verb::options>("*", [](http::web_request& req, http::web_response& rep)
