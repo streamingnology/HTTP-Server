@@ -47,35 +47,35 @@ int HttpServer::start() {
         rep.fill_json(response);
     });
 
-    http_server_->bind<http::verb::delete_>("/@!/api/v10/directory", [](http::web_request& req, http::web_response& rep)
+    http_server_->bind<http::verb::delete_>("/@!/api/v10/directory", [this](http::web_request& req, http::web_response& rep)
     {
         asio2::ignore_unused(req, rep);
         set_cors(req, rep);
         rep.fill_html(http::status::not_implemented);
     });
 
-    http_server_->bind<http::verb::delete_>("/@!/api/v10/file", [](http::web_request& req, http::web_response& rep)
+    http_server_->bind<http::verb::delete_>("/@!/api/v10/file", [this](http::web_request& req, http::web_response& rep)
     {
         asio2::ignore_unused(req, rep);
         set_cors(req, rep);
         rep.fill_html(http::status::not_implemented);
     });
 
-    http_server_->bind<http::verb::get>("/@!/webroot/*", [](http::web_request& req, http::web_response& rep)
+    http_server_->bind<http::verb::get>("/@!/webroot/*", [this](http::web_request& req, http::web_response& rep)
     {
         asio2::ignore_unused(req, rep);
         set_cors(req, rep);
         rep.fill_html(http::status::not_implemented);
     });
 
-    http_server_->bind<http::verb::get>("/", [](http::web_request& req, http::web_response& rep)
+    http_server_->bind<http::verb::get>("/", [this](http::web_request& req, http::web_response& rep)
     {
         asio2::ignore_unused(req, rep);
         set_cors(req, rep);
 
         rep.fill_html(index_html);
     });
-    http_server_->bind<http::verb::get>("/@!/assets/index.js", [](http::web_request& req, http::web_response& rep)
+    http_server_->bind<http::verb::get>("/@!/assets/index.js", [this](http::web_request& req, http::web_response& rep)
     {
         asio2::ignore_unused(req, rep);
         set_cors(req, rep);
@@ -84,14 +84,14 @@ int HttpServer::start() {
 
         rep.fill_html(js_data, http::status::ok, "application/javascript");
     });
-    http_server_->bind<http::verb::get>("/@!/assets/index.css", [](http::web_request& req, http::web_response& rep)
+    http_server_->bind<http::verb::get>("/@!/assets/index.css", [this](http::web_request& req, http::web_response& rep)
     {
         asio2::ignore_unused(req, rep);
         set_cors(req, rep);
 
         rep.fill_html(index_css, http::status::ok, "text/css; charset=UTF-8");
     });
-    http_server_->bind<http::verb::get>("/@!/storage.svg", [](http::web_request& req, http::web_response& rep)
+    http_server_->bind<http::verb::get>("/@!/storage.svg", [this](http::web_request& req, http::web_response& rep)
     {
         asio2::ignore_unused(req, rep);
         set_cors(req, rep);
@@ -99,7 +99,7 @@ int HttpServer::start() {
         rep.fill_html(svg_file, http::status::ok, "image/svg+xml");
     });
 
-    http_server_->bind<http::verb::options>("*", [](http::web_request& req, http::web_response& rep)
+    http_server_->bind<http::verb::options>("*", [this](http::web_request& req, http::web_response& rep)
     {
         asio2::ignore_unused(req, rep);
         set_cors(req, rep);
@@ -134,4 +134,11 @@ int HttpServer::stop() {
     }
     running_ = false;
     return 0;
+}
+
+void HttpServer::set_cors(http::web_request &req, http::web_response &rep) {
+    rep.set("Access-Control-Allow-Headers", "Content-Type");
+    rep.set("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+    rep.set("Access-Control-Max-Age", "36000");
+    rep.set("Access-Control-Allow-Origin", "*");
 }

@@ -19,5 +19,3 @@ std::shared_ptr<directory> directory_parse_from_request(http::web_request& req);
 std::shared_ptr<std::map<std::string, std::vector<DirectoryContent>>> directory_get_content(std::string& webroot, std::shared_ptr<directory>);
 
 std::string directory_generate_response(std::shared_ptr<std::map<std::string, std::vector<DirectoryContent>>>);
-
-void set_cors(http::web_request& req, http::web_response& rep);

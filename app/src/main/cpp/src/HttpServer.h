@@ -21,6 +21,9 @@ public:
     int stop();
 
 private:
+    void set_cors(http::web_request& req, http::web_response& rep);
+
+private:
     bool running_ {false};
     std::string root_ {"/sdcard/"};
     std::uint16_t port_ {8989};

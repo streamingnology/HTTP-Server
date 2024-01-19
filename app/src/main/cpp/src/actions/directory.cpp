@@ -81,10 +81,3 @@ std::string directory_generate_response(std::shared_ptr<std::map<std::string, st
 
     return to_string(j);
 }
-
-void set_cors(http::web_request& req, http::web_response& rep) {
-    rep.set("Access-Control-Allow-Headers", "Content-Type");
-    rep.set("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-    rep.set("Access-Control-Max-Age", "3600");
-    rep.set("Access-Control-Allow-Origin", "*");
-}
